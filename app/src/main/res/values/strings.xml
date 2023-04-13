@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Clothing Suggester</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="demo_temperature">11</string>
+    <string name="celsius">°C</string>
+    <string name="fake_date">10 Apr 2023</string>
+    <string name="quote_1">“IF THERE IS NO STRUGGLE, THERE IS NO PROGRESS”</string>
+    <string name="pick_another">Pick Another</string>
+    <string name="view_categories">View Categories</string>
 </resources>
