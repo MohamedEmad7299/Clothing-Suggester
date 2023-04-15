@@ -2,21 +2,19 @@ package com.ug.clothingsuggester.networking
 
 import android.util.Log
 import com.google.gson.Gson
+import com.ug.clothingsuggester.models.CurrentWeather
 import com.ug.clothingsuggester.models.ForecastResponse
 import okhttp3.*
-import org.json.JSONObject
 import java.io.IOException
 
 object ApiServices {
 
     private val client = OkHttpClient()
-
-    fun makeRequest() : ForecastResponse? {
-
-        val latitude = "26.231737"
-        val longitude = "31.996723"
-        val timezone = "Africa/Cairo"
-        val current_weather = "true"
+    private const val latitude = "26.231737"
+    private const val longitude = "31.996723"
+    private const val timezone = "Africa/Cairo"
+    private const val currentWeather = "true"
+    fun makeRequest() : CurrentWeather? {
 
         val url = HttpUrl.Builder()
             .scheme("https")
@@ -26,7 +24,7 @@ object ApiServices {
             .addQueryParameter("latitude", latitude)
             .addQueryParameter("longitude", longitude)
             .addQueryParameter("timezone", timezone)
-            .addQueryParameter("current_weather", current_weather)
+            .addQueryParameter("current_weather", currentWeather)
             .build()
 
         var result : ForecastResponse? = null
@@ -37,17 +35,15 @@ object ApiServices {
 
                 response.body?.string()?.let {jsonString ->
 
-                    val jsonObject = Gson().fromJson(jsonString,ForecastResponse::class.java)
-                    Log.i("Yoge",jsonString)
-                    result = jsonObject
+                    result = Gson().fromJson(jsonString,ForecastResponse::class.java)
                 }
             }
 
             override fun onFailure(call: Call, e: IOException) {
-                Log.i("YOGE", "$e.message")
+
             }
         })
 
-        return result
+        return result?.currentWeather
     }
 }

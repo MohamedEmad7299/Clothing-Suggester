@@ -134,9 +134,8 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_view_categories"
-            android:layout_width="match_parent"
+            android:layout_width="328dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/medium_size_16"
             android:layout_marginTop="@dimen/large_size_40"
             android:backgroundTint="@color/black"
             android:fontFamily="@font/roboto_medium"
