@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/custom_white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.CategoriesFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/custom_white"
+        tools:context=".ui.CategoriesFragment">
+
+
+        <androidx.cardview.widget.CardView android:id="@+id/card_view_winter_outfits"
+            android:layout_width="350dp"
+            android:layout_height="175dp"
+            android:layout_marginTop="@dimen/large_size_100"
+            app:cardCornerRadius="@dimen/medium_size_16"
+            android:elevation="@dimen/small_size_4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:background="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="175dp"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/imag3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/text_view_winter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/medium_size_16"
+                    android:layout_marginTop="@dimen/large_size_32"
+                    android:text="@string/winter"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@color/custom_white"
+                    android:textSize="@dimen/font_size_35"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/medium_size_16"
+                    android:layout_marginTop="@dimen/small_size_8"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="@string/outfits"
+                    android:textColor="@color/custom_white"
+                    android:textSize="@dimen/font_size_35"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_winter" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView android:id="@+id/card_view_summer_outfits"
+            android:layout_width="350dp"
+            android:layout_height="175dp"
+            android:elevation="@dimen/small_size_4"
+            app:cardCornerRadius="@dimen/medium_size_16"
+            android:layout_marginTop="@dimen/large_size_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_view_winter_outfits">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/black">
+
+
+                <ImageView
+                    android:layout_width="175dp"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/imag2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/text_view_summer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/medium_size_16"
+                    android:layout_marginTop="@dimen/large_size_32"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="@string/summer"
+                    android:textColor="@color/custom_white"
+                    android:textSize="@dimen/font_size_35"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/medium_size_16"
+                    android:layout_marginTop="@dimen/small_size_8"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="@string/outfits"
+                    android:textColor="@color/custom_white"
+                    android:textSize="@dimen/font_size_35"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_summer" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView android:id="@+id/card_view_all_outfits"
+            android:layout_width="350dp"
+            android:layout_height="175dp"
+            android:elevation="@dimen/small_size_4"
+            app:cardCornerRadius="@dimen/medium_size_16"
+            android:layout_marginTop="@dimen/large_size_26"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_view_summer_outfits">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/black">
+
+
+                <ImageView
+                    android:layout_width="175dp"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/imag1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/text_view_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/medium_size_16"
+                    android:layout_marginTop="26dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="@string/all"
+                    android:textColor="@color/custom_white"
+                    android:textSize="@dimen/font_size_35"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/medium_size_16"
+                    android:layout_marginTop="@dimen/small_size_8"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="@string/outfits"
+                    android:textColor="@color/custom_white"
+                    android:textSize="@dimen/font_size_35"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_all" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_add_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/large_size_50"
+            android:fontFamily="@font/roboto_medium"
+            android:paddingHorizontal="@dimen/large_size_32"
+            android:paddingVertical="@dimen/medium_size_16"
+            android:text="@string/add_more"
+            android:textAllCaps="false"
+            android:textColor="@color/custom_white"
+            android:textSize="@dimen/font_size_18"
+            app:cornerRadius="@dimen/medium_size_16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_view_all_outfits" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

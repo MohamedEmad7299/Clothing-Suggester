@@ -8,4 +8,10 @@
     <string name="quote_1">“IF THERE IS NO STRUGGLE, THERE IS NO PROGRESS”</string>
     <string name="pick_another">Pick Another</string>
     <string name="view_categories">View Categories</string>
+    <string name="overcast">Overcast</string>
+    <string name="winter">Winter</string>
+    <string name="outfits">Outfits</string>
+    <string name="summer">Summer</string>
+    <string name="all">ALL</string>
+    <string name="add_more">Add More</string>
 </resources>

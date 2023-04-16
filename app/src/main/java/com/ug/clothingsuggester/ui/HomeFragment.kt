@@ -1,23 +1,30 @@
 package com.ug.clothingsuggester.ui
 
+import android.icu.util.Calendar
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.ug.clothingsuggester.R
+import com.ug.clothingsuggester.databinding.FragmentCategoriesBinding
 import com.ug.clothingsuggester.databinding.FragmentHomeBinding
+import com.ug.clothingsuggester.models.CurrentWeather
+import com.ug.clothingsuggester.networking.ApiServices
 
 
 class HomeFragment : Fragment() {
 
-    lateinit var binding: FragmentHomeBinding
+    val calendar = Calendar.getInstance()
+    lateinit var binding: FragmentCategoriesBinding
+    lateinit var currentWeather: CurrentWeather
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        binding = FragmentHomeBinding.inflate(inflater,container,false)
+        binding = FragmentCategoriesBinding.inflate(inflater,container,false)
         return binding.root
     }
 
@@ -25,39 +32,45 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
+//    private fun checkResponse(){
+//
+//        if (ApiServices.apiResponse == null) Toast.makeText(requireContext(), "الحمدلله", Toast.LENGTH_SHORT).show()
+//    }
 
+//    fun changeForecastImage(){
+//
+//        when(currentWeather.weatherCode){
+//
+//            in CLEAR_WEATHER_CODES -> setImageResourceForForecastImage(R.drawable.sun_icon)
+//            PARTLY_CLOUDY_CODE -> setImageResourceForForecastImage(R.drawable.partly_cloud)
+//            OVERCAST_CODE -> setImageResourceForForecastImage(R.drawable.cloud_icon)
+//            in FOGGY_WEATHER_CODES -> setImageResourceForForecastImage(R.drawable.foggy_icon)
+//            in RAINY_WEATHER_CODES -> setImageResourceForForecastImage(R.drawable.rainy_icon)
+//            in THUNDER_WEATHER_CODES -> setImageResourceForForecastImage(R.drawable.thunder_icon)
+//            in SNOW_WEATHER_CODES -> setImageResourceForForecastImage(R.drawable.snow_icon)
+//        }
+//    }
+//    private fun setImageResourceForForecastImage(imageID : Int){
+//
+//        binding.imageViewForecast.setImageResource(imageID)
+//    }
 
     companion object{
 
-        // Weather Codes
+        val FOGGY_WEATHER_CODES = listOf(45,48)
+        val CLEAR_WEATHER_CODES = listOf(0,1)
+        val RAINY_WEATHER_CODES = listOf(51,53,55,56,57,61,63,65,66,67,80,81,82)
+        val THUNDER_WEATHER_CODES = listOf(95,96,99)
+        val SNOW_WEATHER_CODES = listOf(71,73,75,77,85,86)
+        const val PARTLY_CLOUDY_CODE = 2
+        const val OVERCAST_CODE = 3
 
-        const val CLEAR_SKY = 0
-        const val MAINLY_CLEAR = 1
-        const val PARTLY_CLOUDY = 2
-        const val OVERCAST = 3
-        const val FOG = 45
-        const val DEPOSITING_RIME_FOG = 48
-        const val DRIZZLE_LIGHT = 51
-        const val DRIZZLE_MODERATE = 53
-        const val DRIZZLE_DENSE_INTENSITY = 55
-        const val FREEZING_DRIZZLE_LIGHT = 56
-        const val FREEZING_DRIZZLE_DENSE_INTENSITY = 57
-        const val RAIN_SLIGHT = 61
-        const val RAIN_MODERATE = 63
-        const val RAIN_HEAVY_INTENSITY = 65
-        const val FREEZING_RAIN_LIGHT = 66
-        const val FREEZING_RAIN_HEAVY_INTENSITY = 67
-        const val SNOW_FALL_SLIGHT = 71
-        const val SNOW_FALL_MODERATE = 73
-        const val SNOW_FALL_HEAVY_INTENSITY = 75
-        const val SNOW_GRAINS = 77
-        const val RAIN_SHOWERS_SLIGHT = 80
-        const val RAIN_SHOWERS_MODERATE = 81
-        const val RAIN_SHOWERS_VIOLENT = 82
-        const val SNOW_SHOWERS_SLIGHT = 85
-        const val SNOW_SHOWERS_HEAVY = 86
-        const val THUNDER_STORM_SLIGHT_OR_MODERATE = 95
-        const val THUNDER_STORM_WITH_SLIGHT = 96
-        const val THUNDER_STORM_WITH_HEAVY_HAIL = 99
+        const val FOGGY_WEATHER_TEXT = "Foggy Day"
+        const val CLEAR_WEATHER_TEXT = "Clear Sky"
+        const val RAINY_WEATHER_TEXT = "Rainy Day"
+        const val SNOW_WEATHER_TEXT = "Snowy Day"
+        const val THUNDER_WEATHER_TEXT = "Thunder Storm"
+        const val OVERCAST_WEATHER_TEXT = "Overcast"
+        const val PARTLY_CLOUDY_WEATHER_TEXT = "Partly Cloudy"
     }
 }
