@@ -24,6 +24,13 @@
     <dimen name="large_size_80">80dp</dimen>
     <dimen name="large_size_86">86dp</dimen>
     <dimen name="large_size_100">100dp</dimen>
+    <dimen name="large_size_160">160dp</dimen>
+    <dimen name="large_size_175">175dp</dimen>
+    <dimen name="large_size_200">200dp</dimen>
+    <dimen name="large_size_230">230dp</dimen>
+    <dimen name="large_size_300">300dp</dimen>
+    <dimen name="large_size_328">328dp</dimen>
+    <dimen name="large_size_350">350dp</dimen>
 
     <dimen name="font_size_12">12sp</dimen>
     <dimen name="font_size_14">14sp</dimen>

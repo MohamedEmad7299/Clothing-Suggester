@@ -1,20 +1,47 @@
 package com.ug.clothingsuggester.ui
 
-import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.ug.clothingsuggester.R
+import com.ug.clothingsuggester.data.DataSource
+import com.ug.clothingsuggester.databinding.FragmentCategoriesBinding
+import com.ug.clothingsuggester.ui.base.BaseFragment
 
 
-class CategoriesFragment : Fragment() {
+class CategoriesFragment : BaseFragment<FragmentCategoriesBinding>() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_categories, container, false)
+    val wardrobeFragment = WardrobeFragment()
+    override val bindingInflater: (LayoutInflater) -> FragmentCategoriesBinding = FragmentCategoriesBinding::inflate
+
+    override fun callBacks() {
+
+        selectCategory()
+    }
+
+    private fun replaceFragment(fragment: Fragment){
+
+        requireActivity().supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container,fragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    private fun selectCategory(){
+
+        binding.cardViewWinterOutfits.setOnClickListener {
+            DataSource.SELECTED_OUTFITS_CATEGORY = DataSource.WINTER_OUTFITS_CATEGORY
+            replaceFragment(wardrobeFragment)
+        }
+
+        binding.cardViewSummerOutfits.setOnClickListener {
+            DataSource.SELECTED_OUTFITS_CATEGORY = DataSource.SUMMER_OUTFITS_CATEGORY
+            replaceFragment(wardrobeFragment)
+        }
+
+        binding.cardViewAllOutfits.setOnClickListener {
+            DataSource.SELECTED_OUTFITS_CATEGORY = DataSource.ALL_OUTFITS_CATEGORY
+            replaceFragment(wardrobeFragment)
+        }
     }
 }

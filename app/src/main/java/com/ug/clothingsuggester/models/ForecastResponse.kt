@@ -1,12 +1,10 @@
 package com.ug.clothingsuggester.models
 
+import com.google.gson.annotations.SerializedName
+
 data class ForecastResponse(
 
-    val latitude : Double,
-    val longitude : Double,
-    val generationTime_ms : Double,
-    val utc_offset_seconds : Double,
-    val timezone : String,
-    val timezone_abbreviation : String,
-    val elevation : Double,
-    val currentWeather : CurrentWeather)
+    @SerializedName("request") val request : Request,
+    @SerializedName("location") val location : Location,
+    @SerializedName("current") val current : Current,
+    )

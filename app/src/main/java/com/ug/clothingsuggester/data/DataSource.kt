@@ -65,4 +65,12 @@ object DataSource {
         R.drawable.o9,
         R.drawable.o10
     )
+
+    const val WINTER_OUTFITS_CATEGORY = "Winter Outfits"
+
+    const val SUMMER_OUTFITS_CATEGORY = "Summer Outfits"
+
+    const val ALL_OUTFITS_CATEGORY = "All Outfits"
+
+    var SELECTED_OUTFITS_CATEGORY = "All Outfits"
 }

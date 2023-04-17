@@ -1,0 +1,33 @@
+package com.ug.clothingsuggester.data
+
+import android.content.Context
+import android.content.SharedPreferences
+
+object DataManager {
+
+    private var sharedPreferences : SharedPreferences? = null
+    private const val SHARED_PREFERENCES_NAME = "Shared_Preferences"
+    private const val WINTER_OUTFIT_KEY = "WinterIsGone"
+    private const val SUMMER_OUTFIT_KEY = "WinterIsComing"
+
+    fun initialSharedPreferences(context: Context){
+
+        sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_NAME,Context.MODE_PRIVATE)
+    }
+
+    var winterOutfitIndex : Int?
+        get() = sharedPreferences?.getInt(WINTER_OUTFIT_KEY,0)
+        set(value) {
+            if (value != null) {
+                sharedPreferences?.edit()?.putInt(WINTER_OUTFIT_KEY,value)?.apply()
+            }
+        }
+
+    var summerOutfitIndex : Int?
+        get() = sharedPreferences?.getInt(SUMMER_OUTFIT_KEY,8)
+        set(value) {
+            if (value != null) {
+                sharedPreferences?.edit()?.putInt(SUMMER_OUTFIT_KEY,value)?.apply()
+            }
+        }
+}

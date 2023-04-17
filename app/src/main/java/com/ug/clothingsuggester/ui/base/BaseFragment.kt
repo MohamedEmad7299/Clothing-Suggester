@@ -1,0 +1,48 @@
+package com.ug.clothingsuggester.ui.base
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.viewbinding.ViewBinding
+import com.ug.clothingsuggester.R
+
+abstract class BaseFragment<viewBinding : ViewBinding> : Fragment() {
+
+    abstract val bindingInflater: (LayoutInflater) -> viewBinding
+    private var _binding: viewBinding? = null
+
+    protected val binding: viewBinding
+        get() = _binding as viewBinding
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = bindingInflater(layoutInflater)
+        return _binding!!.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        callBacks()
+    }
+
+    abstract fun callBacks()
+
+    open fun addFragment(fragment: Fragment){
+
+        requireActivity().supportFragmentManager
+            .beginTransaction()
+            .add(R.id.fragment_container,fragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+}

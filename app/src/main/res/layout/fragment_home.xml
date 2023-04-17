@@ -17,7 +17,7 @@
 
         <androidx.cardview.widget.CardView android:id="@+id/card_view_forecast"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="@dimen/large_size_160"
             android:layout_marginTop="@dimen/large_size_32"
             android:layout_marginEnd="@dimen/medium_size_16"
             app:cardCornerRadius="@dimen/medium_size_16"
@@ -31,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView android:id="@+id/imageView"
+                <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/forecast_background_svg" />
@@ -39,7 +39,7 @@
                 <TextView android:id="@+id/text_view_temperature"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/demo_temperature"
+                    tools:text="@string/demo_temperature"
                     android:textColor="@color/custom_white"
                     android:textSize="@dimen/font_size_56"
                     android:fontFamily="@font/roboto"
@@ -48,7 +48,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
+                <TextView android:id="@+id/text_view_celsius"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/celsius"
@@ -58,27 +58,39 @@
                     app:layout_constraintStart_toEndOf="@id/text_view_temperature"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView android:id="@+id/image_view_forecast"
-                    android:layout_width="96dp"
-                    android:layout_height="96dp"
+                <com.google.android.material.imageview.ShapeableImageView android:id="@+id/image_view_forecast"
+                    android:layout_width="66dp"
+                    android:layout_height="66dp"
                     android:layout_marginTop="@dimen/large_size_30"
                     android:layout_marginEnd="@dimen/medium_size_16"
-                    android:src="@drawable/cloud_icon"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView"
+                    tools:src="@color/bloody"
+                    app:shapeAppearanceOverlay="@style/roundedImageView"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/text_view_date"
+                <TextView android:id="@+id/text_view_city"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/medium_size_16"
                     android:layout_marginBottom="@dimen/medium_size_12"
                     android:fontFamily="@font/roboto"
-                    android:text="@string/overcast"
+                    tools:text="@string/sohag"
+                    android:textColor="@color/bloody"
+                    android:textSize="@dimen/font_size_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView android:id="@+id/text_view_weather"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/medium_size_12"
+                    android:fontFamily="@font/roboto"
+                    tools:text="@string/overcast"
+                    android:layout_marginEnd="@dimen/medium_size_16"
                     android:textColor="@color/gray"
                     android:textSize="@dimen/font_size_24"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView"
-                    app:layout_constraintStart_toStartOf="@+id/imageView" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -88,7 +100,7 @@
         <TextView android:id="@+id/text_view_quote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/quote_1"
+            tools:text="@string/quote_1"
             android:textColor="@color/black"
             android:textAlignment="center"
             android:fontFamily="@font/roboto_medium"
@@ -101,8 +113,8 @@
             app:layout_constraintTop_toBottomOf="@+id/card_view_forecast" />
 
         <View android:id="@+id/view_outfit_shadow"
-            android:layout_width="200dp"
-            android:layout_height="300dp"
+            android:layout_width="@dimen/large_size_200"
+            android:layout_height="@dimen/large_size_300"
             android:background="@color/semi_gray"
             android:layout_marginBottom="@dimen/medium_size_16"
             android:layout_marginEnd="@dimen/medium_size_16"
@@ -110,8 +122,8 @@
             app:layout_constraintEnd_toEndOf="@+id/image_view_outfit" />
 
         <ImageView android:id="@+id/image_view_outfit"
-            android:layout_width="200dp"
-            android:layout_height="300dp"
+            android:layout_width="@dimen/large_size_200"
+            android:layout_height="@dimen/large_size_300"
             android:scaleType="centerCrop"
             android:src="@drawable/outfit_1"
             android:layout_marginTop="@dimen/large_size_86"
@@ -138,7 +150,7 @@
         <com.google.android.material.button.MaterialButton
             android:textColor="@color/custom_white"
             android:id="@+id/button_view_categories"
-            android:layout_width="328dp"
+            android:layout_width="@dimen/large_size_328"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/large_size_40"
             android:backgroundTint="@color/black"

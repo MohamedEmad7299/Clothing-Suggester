@@ -1,76 +1,105 @@
 package com.ug.clothingsuggester.ui
 
-import android.icu.util.Calendar
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.ug.clothingsuggester.R
-import com.ug.clothingsuggester.databinding.FragmentCategoriesBinding
+import com.ug.clothingsuggester.data.DataManager
+import com.ug.clothingsuggester.data.DataSource
 import com.ug.clothingsuggester.databinding.FragmentHomeBinding
-import com.ug.clothingsuggester.models.CurrentWeather
+import com.ug.clothingsuggester.models.ForecastResponse
 import com.ug.clothingsuggester.networking.ApiServices
+import com.ug.clothingsuggester.ui.base.BaseFragment
 
+class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
-class HomeFragment : Fragment() {
+    val categoriesFragment = CategoriesFragment()
+    override val bindingInflater: (LayoutInflater) -> FragmentHomeBinding
+        = FragmentHomeBinding::inflate
 
-    val calendar = Calendar.getInstance()
-    lateinit var binding: FragmentCategoriesBinding
-    lateinit var currentWeather: CurrentWeather
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun callBacks() {
 
-        binding = FragmentCategoriesBinding.inflate(inflater,container,false)
-        return binding.root
+        ApiServices.makeRequest(::apiCallback)
+        pickRandomQuote()
+        viewCategories()
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    private fun pickRandomQuote(){
+
+        binding.textViewQuote.text = DataSource.quotes.random().uppercase()
     }
 
-//    private fun checkResponse(){
-//
-//        if (ApiServices.apiResponse == null) Toast.makeText(requireContext(), "الحمدلله", Toast.LENGTH_SHORT).show()
-//    }
+    private fun selectSuitableOutfit(temperature : Int){
 
-//    fun changeForecastImage(){
-//
-//        when(currentWeather.weatherCode){
-//
-//            in CLEAR_WEATHER_CODES -> setImageResourceForForecastImage(R.drawable.sun_icon)
-//            PARTLY_CLOUDY_CODE -> setImageResourceForForecastImage(R.drawable.partly_cloud)
-//            OVERCAST_CODE -> setImageResourceForForecastImage(R.drawable.cloud_icon)
-//            in FOGGY_WEATHER_CODES -> setImageResourceForForecastImage(R.drawable.foggy_icon)
-//            in RAINY_WEATHER_CODES -> setImageResourceForForecastImage(R.drawable.rainy_icon)
-//            in THUNDER_WEATHER_CODES -> setImageResourceForForecastImage(R.drawable.thunder_icon)
-//            in SNOW_WEATHER_CODES -> setImageResourceForForecastImage(R.drawable.snow_icon)
-//        }
-//    }
-//    private fun setImageResourceForForecastImage(imageID : Int){
-//
-//        binding.imageViewForecast.setImageResource(imageID)
-//    }
+        val winterOutfitId = DataSource.winterOutfits[DataManager.winterOutfitIndex!!]
+        val summerOutfitId = DataSource.summerOutfits[DataManager.summerOutfitIndex!!]
+        if (temperature <= 20){
+            binding.imageViewOutfit.setImageResource(winterOutfitId)
+        } else {
+            binding.imageViewOutfit.setImageResource(summerOutfitId)
+        }
+    }
+    private fun pickAnotherOutfit(temperature: Int){
+
+        binding.buttonPickAnother.setOnClickListener {
+
+            if (temperature <= 20){
+                if (DataManager.winterOutfitIndex == DataSource.winterOutfits.size-1) DataManager.winterOutfitIndex = 0
+                else DataManager.winterOutfitIndex = DataManager.winterOutfitIndex!! + 1
+                val winterOutfitId = DataSource.winterOutfits[DataManager.winterOutfitIndex!!]
+                binding.imageViewOutfit.setImageResource(winterOutfitId)
+            } else {
+                if (DataManager.summerOutfitIndex == DataSource.summerOutfits.size-1) DataManager.summerOutfitIndex = 0
+                else  DataManager.summerOutfitIndex = DataManager.summerOutfitIndex!! + 1
+                val summerOutfitId = DataSource.summerOutfits[DataManager.summerOutfitIndex!!]
+                binding.imageViewOutfit.setImageResource(summerOutfitId)
+            }
+        }
+    }
+    private fun viewCategories(){
+
+        binding.buttonViewCategories.setOnClickListener {
+            addFragment(categoriesFragment)
+        }
+    }
+    private fun apiCallback(forecastResponse: ForecastResponse?){
+
+        if(forecastResponse == null){
+
+            binding.apply {
+
+                textViewTemperature.textSize = TEXT_SIZE_20
+                textViewTemperature.text = CHECK_INTERNET_CONNECTION
+                textViewCelsius.text = ""
+                imageViewOutfit.setImageResource(R.color.gray)
+                buttonPickAnother.isClickable = false
+            }
+        }
+        else{
+
+            activity?.runOnUiThread {
+
+                val temperature = forecastResponse.current.temperature.toString()
+                selectSuitableOutfit(temperature.toInt())
+                pickAnotherOutfit(temperature.toInt())
+                binding.apply {
+                    textViewTemperature.text = temperature
+                    textViewWeather.text = forecastResponse.current.weatherDescriptions[0]
+                    textViewCity.text = forecastResponse.location.name
+                }
+
+                Glide.with(this)
+                    .load(forecastResponse.current.weatherIcons[0])
+                    .into(binding.imageViewForecast)
+            }
+        }
+    }
 
     companion object{
 
-        val FOGGY_WEATHER_CODES = listOf(45,48)
-        val CLEAR_WEATHER_CODES = listOf(0,1)
-        val RAINY_WEATHER_CODES = listOf(51,53,55,56,57,61,63,65,66,67,80,81,82)
-        val THUNDER_WEATHER_CODES = listOf(95,96,99)
-        val SNOW_WEATHER_CODES = listOf(71,73,75,77,85,86)
-        const val PARTLY_CLOUDY_CODE = 2
-        const val OVERCAST_CODE = 3
-
-        const val FOGGY_WEATHER_TEXT = "Foggy Day"
-        const val CLEAR_WEATHER_TEXT = "Clear Sky"
-        const val RAINY_WEATHER_TEXT = "Rainy Day"
-        const val SNOW_WEATHER_TEXT = "Snowy Day"
-        const val THUNDER_WEATHER_TEXT = "Thunder Storm"
-        const val OVERCAST_WEATHER_TEXT = "Overcast"
-        const val PARTLY_CLOUDY_WEATHER_TEXT = "Partly Cloudy"
+        const val TEXT_SIZE_20 = 20.0f
+        const val CHECK_INTERNET_CONNECTION = "Check Internet Connection"
     }
 }
