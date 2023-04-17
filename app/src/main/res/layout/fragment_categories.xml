@@ -8,8 +8,7 @@
     tools:context=".ui.CategoriesFragment">
 
 
-    <TextView
-        android:id="@+id/text_View_motivation"
+    <TextView android:id="@+id/text_View_motivation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_size_24"
@@ -17,14 +16,13 @@
         android:text="@string/work_harder_to_make_the_wardrobe_larger"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="32sp"
+        android:textSize="@dimen/font_size_32"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view_winter_outfits"
+    <androidx.cardview.widget.CardView android:id="@+id/card_view_winter_outfits"
         android:layout_width="@dimen/large_size_350"
         android:layout_height="@dimen/large_size_175"
         android:elevation="@dimen/small_size_4"
@@ -43,9 +41,8 @@
             android:background="@color/black">
 
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="175dp"
+            <ImageView android:id="@+id/imageView2"
+                android:layout_width="@dimen/large_size_175"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:src="@drawable/imag3"
@@ -103,7 +100,7 @@
 
 
             <ImageView
-                android:layout_width="175dp"
+                android:layout_width="@dimen/large_size_175"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:src="@drawable/imag2"
@@ -160,7 +157,7 @@
 
 
             <ImageView
-                android:layout_width="175dp"
+                android:layout_width="@dimen/large_size_175"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:src="@drawable/imag1"

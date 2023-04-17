@@ -1,9 +1,6 @@
 package com.ug.clothingsuggester.ui
 
-import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
-import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.ug.clothingsuggester.R
 import com.ug.clothingsuggester.data.DataManager

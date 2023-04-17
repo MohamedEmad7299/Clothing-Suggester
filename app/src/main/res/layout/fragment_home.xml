@@ -59,8 +59,8 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.imageview.ShapeableImageView android:id="@+id/image_view_forecast"
-                    android:layout_width="66dp"
-                    android:layout_height="66dp"
+                    android:layout_width="@dimen/large_size_66"
+                    android:layout_height="@dimen/large_size_66"
                     android:layout_marginTop="@dimen/large_size_30"
                     android:layout_marginEnd="@dimen/medium_size_16"
                     tools:src="@color/bloody"
