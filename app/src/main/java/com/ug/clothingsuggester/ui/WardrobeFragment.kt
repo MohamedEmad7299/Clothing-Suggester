@@ -16,8 +16,6 @@ class WardrobeFragment : BaseFragment<FragmentWardrobeBinding>() {
 
         initializeUI()
     }
-
-
     private fun initializeUI(){
 
         when(DataSource.SELECTED_OUTFITS_CATEGORY){
@@ -38,10 +36,9 @@ class WardrobeFragment : BaseFragment<FragmentWardrobeBinding>() {
 
             DataSource.ALL_OUTFITS_CATEGORY ->{
 
-                val allOutfits = DataSource.winterOutfits + DataSource.summerOutfits
-                outfitAdapter = OutfitAdapter(allOutfits.shuffled())
+                outfitAdapter = OutfitAdapter(DataSource.allOutfits)
                 binding.recyclerOutfits.adapter = outfitAdapter
-                binding.textViewOutfitsNumber.text = allOutfits.size.toString()
+                binding.textViewOutfitsNumber.text = DataSource.allOutfits.size.toString()
                 binding.textViewCategory.text = DataSource.ALL_OUTFITS_CATEGORY
             }
         }

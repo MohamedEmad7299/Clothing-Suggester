@@ -1,5 +1,6 @@
 package com.ug.clothingsuggester.ui
 
+import android.icu.util.Calendar
 import android.view.LayoutInflater
 import com.bumptech.glide.Glide
 import com.ug.clothingsuggester.R
@@ -12,7 +13,8 @@ import com.ug.clothingsuggester.ui.base.BaseFragment
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
-    val categoriesFragment = CategoriesFragment()
+    private val calendar = Calendar.getInstance()
+    private val categoriesFragment = CategoriesFragment()
     override val bindingInflater: (LayoutInflater) -> FragmentHomeBinding
         = FragmentHomeBinding::inflate
 
@@ -22,21 +24,38 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         pickRandomQuote()
         viewCategories()
     }
-
-    private fun pickRandomQuote(){
-
-        binding.textViewQuote.text = DataSource.quotes.random().uppercase()
-    }
-
-    private fun selectSuitableOutfit(temperature : Int){
+    private fun selectSuitableOutfit(temperature : Int) {
 
         val winterOutfitId = DataSource.winterOutfits[DataManager.winterOutfitIndex!!]
         val summerOutfitId = DataSource.summerOutfits[DataManager.summerOutfitIndex!!]
-        if (temperature <= 20){
+        if (temperature <= 20) {
             binding.imageViewOutfit.setImageResource(winterOutfitId)
         } else {
             binding.imageViewOutfit.setImageResource(summerOutfitId)
         }
+    }
+    private fun changeOutfitDaily(temperature : Int){
+
+        if (calendar.get(Calendar.DAY_OF_MONTH).toString() != DataManager.currentDate){
+
+            DataManager.currentDate = calendar.get(Calendar.DAY_OF_MONTH).toString()
+
+            if (temperature <= 20){
+                if (DataManager.winterOutfitIndex == DataSource.winterOutfits.size-1) DataManager.winterOutfitIndex = 0
+                else DataManager.winterOutfitIndex = DataManager.winterOutfitIndex!! + 1
+                val winterOutfitId = DataSource.winterOutfits[DataManager.winterOutfitIndex!!]
+                binding.imageViewOutfit.setImageResource(winterOutfitId)
+            } else {
+                if (DataManager.summerOutfitIndex == DataSource.summerOutfits.size-1) DataManager.summerOutfitIndex = 0
+                else  DataManager.summerOutfitIndex = DataManager.summerOutfitIndex!! + 1
+                val summerOutfitId = DataSource.summerOutfits[DataManager.summerOutfitIndex!!]
+                binding.imageViewOutfit.setImageResource(summerOutfitId)
+            }
+        }
+    }
+    private fun pickRandomQuote(){
+
+        binding.textViewQuote.text = DataSource.quotes.random().uppercase()
     }
     private fun pickAnotherOutfit(temperature: Int){
 
@@ -80,6 +99,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
                 val temperature = forecastResponse.current.temperature.toString()
                 selectSuitableOutfit(temperature.toInt())
+                changeOutfitDaily(temperature.toInt())
                 pickAnotherOutfit(temperature.toInt())
                 binding.apply {
                     textViewTemperature.text = temperature
@@ -93,7 +113,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             }
         }
     }
-
     companion object{
 
         const val TEXT_SIZE_20 = 20.0f

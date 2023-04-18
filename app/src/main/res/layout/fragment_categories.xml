@@ -21,7 +21,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <androidx.cardview.widget.CardView android:id="@+id/card_view_winter_outfits"
         android:layout_width="@dimen/large_size_350"
         android:layout_height="@dimen/large_size_175"
@@ -41,7 +40,7 @@
             android:background="@color/black">
 
 
-            <ImageView android:id="@+id/imageView2"
+            <ImageView android:id="@+id/image_view_winter_outfit"
                 android:layout_width="@dimen/large_size_175"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -80,8 +79,7 @@
 
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view_summer_outfits"
+    <androidx.cardview.widget.CardView android:id="@+id/card_view_summer_outfits"
         android:layout_width="@dimen/large_size_350"
         android:layout_height="@dimen/large_size_175"
         android:layout_marginTop="@dimen/large_size_24"
@@ -99,7 +97,7 @@
             android:background="@color/black">
 
 
-            <ImageView
+            <ImageView android:id="@+id/image_view_summer_outfit"
                 android:layout_width="@dimen/large_size_175"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -138,8 +136,7 @@
 
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view_all_outfits"
+    <androidx.cardview.widget.CardView android:id="@+id/card_view_all_outfits"
         android:layout_width="@dimen/large_size_350"
         android:layout_height="@dimen/large_size_175"
         android:layout_marginTop="@dimen/large_size_26"
@@ -156,7 +153,7 @@
             android:background="@color/black">
 
 
-            <ImageView
+            <ImageView android:id="@+id/image_view_all_outfit"
                 android:layout_width="@dimen/large_size_175"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -165,8 +162,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
 
-            <TextView
-                android:id="@+id/text_view_all"
+            <TextView android:id="@+id/text_view_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/medium_size_16"

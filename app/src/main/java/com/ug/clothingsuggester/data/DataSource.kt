@@ -66,6 +66,8 @@ object DataSource {
         R.drawable.o10
     )
 
+    val allOutfits = (summerOutfits + winterOutfits).shuffled()
+
     const val WINTER_OUTFITS_CATEGORY = "Winter Outfits"
 
     const val SUMMER_OUTFITS_CATEGORY = "Summer Outfits"

@@ -3,6 +3,7 @@ package com.ug.clothingsuggester.ui
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import com.ug.clothingsuggester.R
+import com.ug.clothingsuggester.data.DataManager
 import com.ug.clothingsuggester.data.DataSource
 import com.ug.clothingsuggester.databinding.FragmentCategoriesBinding
 import com.ug.clothingsuggester.ui.base.BaseFragment
@@ -15,7 +16,16 @@ class CategoriesFragment : BaseFragment<FragmentCategoriesBinding>() {
 
     override fun callBacks() {
 
+        pickRandomImagesForCategoriesCards()
         selectCategory()
+    }
+
+
+    fun pickRandomImagesForCategoriesCards(){
+
+        binding.imageViewAllOutfit.setImageResource(DataSource.allOutfits.random())
+        binding.imageViewSummerOutfit.setImageResource(DataSource.summerOutfits.random())
+        binding.imageViewWinterOutfit.setImageResource(DataSource.winterOutfits.random())
     }
 
     private fun replaceFragment(fragment: Fragment){

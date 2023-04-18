@@ -9,6 +9,7 @@ object DataManager {
     private const val SHARED_PREFERENCES_NAME = "Shared_Preferences"
     private const val WINTER_OUTFIT_KEY = "WinterIsGone"
     private const val SUMMER_OUTFIT_KEY = "WinterIsComing"
+    private const val CURRENT_DATE_KEY = "TodayIsAGift"
 
     fun initialSharedPreferences(context: Context){
 
@@ -29,5 +30,11 @@ object DataManager {
             if (value != null) {
                 sharedPreferences?.edit()?.putInt(SUMMER_OUTFIT_KEY,value)?.apply()
             }
+        }
+
+    var currentDate : String?
+        get() = sharedPreferences?.getString(CURRENT_DATE_KEY,null)
+        set(value) {
+            sharedPreferences?.edit()?.putString(CURRENT_DATE_KEY,value)?.apply()
         }
 }
