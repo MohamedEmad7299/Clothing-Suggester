@@ -26,11 +26,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
     private fun selectSuitableOutfit(temperature : Int) {
 
-        val winterOutfitId = DataSource.winterOutfits[DataManager.winterOutfitIndex!!]
-        val summerOutfitId = DataSource.summerOutfits[DataManager.summerOutfitIndex!!]
-        if (temperature <= 20) {
+        if (temperature <= 20){
+            if (DataManager.winterOutfitIndex == DataSource.winterOutfits.size-1) DataManager.winterOutfitIndex = 0
+            else DataManager.winterOutfitIndex = DataManager.winterOutfitIndex!! + 1
+            val winterOutfitId = DataSource.winterOutfits[DataManager.winterOutfitIndex!!]
             binding.imageViewOutfit.setImageResource(winterOutfitId)
         } else {
+            if (DataManager.summerOutfitIndex == DataSource.summerOutfits.size-1) DataManager.summerOutfitIndex = 0
+            else  DataManager.summerOutfitIndex = DataManager.summerOutfitIndex!! + 1
+            val summerOutfitId = DataSource.summerOutfits[DataManager.summerOutfitIndex!!]
             binding.imageViewOutfit.setImageResource(summerOutfitId)
         }
     }
@@ -39,16 +43,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         if (calendar.get(Calendar.DAY_OF_MONTH).toString() != DataManager.currentDate){
 
             DataManager.currentDate = calendar.get(Calendar.DAY_OF_MONTH).toString()
+            selectSuitableOutfit(temperature)
+        }
 
-            if (temperature <= 20){
-                if (DataManager.winterOutfitIndex == DataSource.winterOutfits.size-1) DataManager.winterOutfitIndex = 0
-                else DataManager.winterOutfitIndex = DataManager.winterOutfitIndex!! + 1
-                val winterOutfitId = DataSource.winterOutfits[DataManager.winterOutfitIndex!!]
+        else{
+
+            val winterOutfitId = DataSource.winterOutfits[DataManager.winterOutfitIndex!!]
+            val summerOutfitId = DataSource.summerOutfits[DataManager.summerOutfitIndex!!]
+            if (temperature <= 20) {
                 binding.imageViewOutfit.setImageResource(winterOutfitId)
             } else {
-                if (DataManager.summerOutfitIndex == DataSource.summerOutfits.size-1) DataManager.summerOutfitIndex = 0
-                else  DataManager.summerOutfitIndex = DataManager.summerOutfitIndex!! + 1
-                val summerOutfitId = DataSource.summerOutfits[DataManager.summerOutfitIndex!!]
                 binding.imageViewOutfit.setImageResource(summerOutfitId)
             }
         }
@@ -61,17 +65,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
         binding.buttonPickAnother.setOnClickListener {
 
-            if (temperature <= 20){
-                if (DataManager.winterOutfitIndex == DataSource.winterOutfits.size-1) DataManager.winterOutfitIndex = 0
-                else DataManager.winterOutfitIndex = DataManager.winterOutfitIndex!! + 1
-                val winterOutfitId = DataSource.winterOutfits[DataManager.winterOutfitIndex!!]
-                binding.imageViewOutfit.setImageResource(winterOutfitId)
-            } else {
-                if (DataManager.summerOutfitIndex == DataSource.summerOutfits.size-1) DataManager.summerOutfitIndex = 0
-                else  DataManager.summerOutfitIndex = DataManager.summerOutfitIndex!! + 1
-                val summerOutfitId = DataSource.summerOutfits[DataManager.summerOutfitIndex!!]
-                binding.imageViewOutfit.setImageResource(summerOutfitId)
-            }
+            selectSuitableOutfit(temperature)
         }
     }
     private fun viewCategories(){
@@ -98,7 +92,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             activity?.runOnUiThread {
 
                 val temperature = forecastResponse.current.temperature.toString()
-                selectSuitableOutfit(temperature.toInt())
                 changeOutfitDaily(temperature.toInt())
                 pickAnotherOutfit(temperature.toInt())
                 binding.apply {
