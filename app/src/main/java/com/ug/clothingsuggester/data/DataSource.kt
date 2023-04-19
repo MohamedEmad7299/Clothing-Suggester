@@ -2,7 +2,7 @@ package com.ug.clothingsuggester.data
 
 import com.ug.clothingsuggester.R
 
-object DataSource {
+class DataSource {
 
     val quotes = listOf(
         "“Be who you are and say what you feel, because those who mind don't matter, and those who matter don't mind.”",
@@ -68,11 +68,11 @@ object DataSource {
 
     val allOutfits = (summerOutfits + winterOutfits).shuffled()
 
-    const val WINTER_OUTFITS_CATEGORY = "Winter Outfits"
+    companion object{
 
-    const val SUMMER_OUTFITS_CATEGORY = "Summer Outfits"
-
-    const val ALL_OUTFITS_CATEGORY = "All Outfits"
-
-    var SELECTED_OUTFITS_CATEGORY = "All Outfits"
+        var SELECTED_OUTFITS_CATEGORY = "All Outfits"
+        const val WINTER_OUTFITS_CATEGORY = "Winter Outfits"
+        const val SUMMER_OUTFITS_CATEGORY = "Summer Outfits"
+        const val ALL_OUTFITS_CATEGORY = "All Outfits"
+    }
 }

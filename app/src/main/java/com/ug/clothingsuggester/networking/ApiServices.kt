@@ -5,10 +5,9 @@ import com.ug.clothingsuggester.models.ForecastResponse
 import okhttp3.*
 import java.io.IOException
 
-object ApiServices {
+class ApiServices {
 
-    private const val ACCESS_KEY = "439c1a6175419eb4690b1a58def30447"
-    private const val QUERY = "Sohag"
+
     fun makeRequest(callback: (ForecastResponse?) -> Unit){
 
         val client = OkHttpClient()
@@ -44,5 +43,11 @@ object ApiServices {
                 callback(null)
             }
         })
+    }
+
+    companion object{
+
+        private const val ACCESS_KEY = "439c1a6175419eb4690b1a58def30447"
+        private const val QUERY = "Sohag"
     }
 }

@@ -3,7 +3,6 @@ package com.ug.clothingsuggester.ui
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import com.ug.clothingsuggester.R
-import com.ug.clothingsuggester.data.DataManager
 import com.ug.clothingsuggester.data.DataSource
 import com.ug.clothingsuggester.databinding.FragmentCategoriesBinding
 import com.ug.clothingsuggester.ui.base.BaseFragment
@@ -11,7 +10,8 @@ import com.ug.clothingsuggester.ui.base.BaseFragment
 
 class CategoriesFragment : BaseFragment<FragmentCategoriesBinding>() {
 
-    val wardrobeFragment = WardrobeFragment()
+    private val wardrobeFragment = WardrobeFragment()
+    private val dataSource = DataSource()
     override val bindingInflater: (LayoutInflater) -> FragmentCategoriesBinding = FragmentCategoriesBinding::inflate
 
     override fun callBacks() {
@@ -21,11 +21,11 @@ class CategoriesFragment : BaseFragment<FragmentCategoriesBinding>() {
     }
 
 
-    fun pickRandomImagesForCategoriesCards(){
+    private fun pickRandomImagesForCategoriesCards(){
 
-        binding.imageViewAllOutfit.setImageResource(DataSource.allOutfits.random())
-        binding.imageViewSummerOutfit.setImageResource(DataSource.summerOutfits.random())
-        binding.imageViewWinterOutfit.setImageResource(DataSource.winterOutfits.random())
+        binding.imageViewAllOutfit.setImageResource(dataSource.allOutfits.random())
+        binding.imageViewSummerOutfit.setImageResource(dataSource.summerOutfits.random())
+        binding.imageViewWinterOutfit.setImageResource(dataSource.winterOutfits.random())
     }
 
     private fun replaceFragment(fragment: Fragment){

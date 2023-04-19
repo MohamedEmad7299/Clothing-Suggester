@@ -3,13 +3,9 @@ package com.ug.clothingsuggester.data
 import android.content.Context
 import android.content.SharedPreferences
 
-object DataManager {
+class DataManager {
 
     private var sharedPreferences : SharedPreferences? = null
-    private const val SHARED_PREFERENCES_NAME = "Shared_Preferences"
-    private const val WINTER_OUTFIT_KEY = "WinterIsGone"
-    private const val SUMMER_OUTFIT_KEY = "WinterIsComing"
-    private const val CURRENT_DATE_KEY = "TodayIsAGift"
 
     fun initialSharedPreferences(context: Context){
 
@@ -37,4 +33,12 @@ object DataManager {
         set(value) {
             sharedPreferences?.edit()?.putString(CURRENT_DATE_KEY,value)?.apply()
         }
+
+    companion object{
+
+        private const val SHARED_PREFERENCES_NAME = "Shared_Preferences"
+        private const val WINTER_OUTFIT_KEY = "WinterIsGone"
+        private const val SUMMER_OUTFIT_KEY = "WinterIsComing"
+        private const val CURRENT_DATE_KEY = "TodayIsAGift"
+    }
 }

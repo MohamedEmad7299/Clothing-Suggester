@@ -9,7 +9,8 @@ import com.ug.clothingsuggester.ui.base.BaseFragment
 
 class WardrobeFragment : BaseFragment<FragmentWardrobeBinding>() {
 
-    lateinit var outfitAdapter: OutfitAdapter
+    private val dataSource = DataSource()
+    private lateinit var outfitAdapter: OutfitAdapter
     override val bindingInflater: (LayoutInflater) -> FragmentWardrobeBinding = FragmentWardrobeBinding::inflate
 
     override fun callBacks() {
@@ -21,24 +22,24 @@ class WardrobeFragment : BaseFragment<FragmentWardrobeBinding>() {
         when(DataSource.SELECTED_OUTFITS_CATEGORY){
 
             DataSource.WINTER_OUTFITS_CATEGORY ->{
-                outfitAdapter = OutfitAdapter(DataSource.winterOutfits)
+                outfitAdapter = OutfitAdapter(dataSource.winterOutfits)
                 binding.recyclerOutfits.adapter = outfitAdapter
-                binding.textViewOutfitsNumber.text = DataSource.winterOutfits.size.toString()
+                binding.textViewOutfitsNumber.text = dataSource.winterOutfits.size.toString()
                 binding.textViewCategory.text = DataSource.WINTER_OUTFITS_CATEGORY
             }
 
             DataSource.SUMMER_OUTFITS_CATEGORY ->{
-                outfitAdapter = OutfitAdapter(DataSource.summerOutfits)
+                outfitAdapter = OutfitAdapter(dataSource.summerOutfits)
                 binding.recyclerOutfits.adapter = outfitAdapter
-                binding.textViewOutfitsNumber.text = DataSource.summerOutfits.size.toString()
+                binding.textViewOutfitsNumber.text = dataSource.summerOutfits.size.toString()
                 binding.textViewCategory.text = DataSource.SUMMER_OUTFITS_CATEGORY
             }
 
             DataSource.ALL_OUTFITS_CATEGORY ->{
 
-                outfitAdapter = OutfitAdapter(DataSource.allOutfits)
+                outfitAdapter = OutfitAdapter(dataSource.allOutfits)
                 binding.recyclerOutfits.adapter = outfitAdapter
-                binding.textViewOutfitsNumber.text = DataSource.allOutfits.size.toString()
+                binding.textViewOutfitsNumber.text = dataSource.allOutfits.size.toString()
                 binding.textViewCategory.text = DataSource.ALL_OUTFITS_CATEGORY
             }
         }
